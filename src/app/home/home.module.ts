@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { CardHomeComponent } from './components/card-home/card-home.component';
 import { PrimengModule } from '../primeng/primeng.module';
-
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { PrimengModule } from '../primeng/primeng.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    PrimengModule
+    PrimengModule,
+    InfiniteScrollModule
   ]
 })
 export class HomeModule { }

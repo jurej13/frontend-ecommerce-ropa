@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener,  Inject, OnInit } from '@angular/core';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -8,8 +9,13 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  showComponent :boolean = false;
   productos !: Producto[]
-  constructor(private productoService : ProductoService) { }
+  constructor(
+    private productoService : ProductoService,
+    @Inject(DOCUMENT) private document : Document 
+    ) { }
 
   ngOnInit(): void {
     this.productoService.getProductos()
@@ -17,5 +23,17 @@ export class HomeComponent implements OnInit {
         error:err => console.log(err)
       })
   }
+  
+  @HostListener('window:scroll')
+    animationOnScroll(){
+      const yOffSet = window.scrollY //numero de pixeles que se desplaza
+      const scrollTop = this.document.documentElement.scrollTop
+      
+      return (this.showComponent = (yOffSet) > 30)
+         ? 'scalein animation-duration-1000 animation-delay-400'
+         : ''
+    }
+ 
+  
 
 }

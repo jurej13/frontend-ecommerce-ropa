@@ -1,6 +1,13 @@
-<div class="col">
-  <app-slider></app-slider>
-</div>
-<div class="scalein animation-duration-1000 animation-delay-400">
-  <app-card-home *ngIf="productos" [productos]="productos"></app-card-home>
-</div>
+
+  <div class="col">
+    <app-slider></app-slider>
+  </div>
+  <div>
+    <div 
+      [ngClass]="animationOnScroll()"
+    >
+      <app-card-home *ngIf="productos" [productos]="productos"></app-card-home>
+    </div>
+  </div>
+
+
