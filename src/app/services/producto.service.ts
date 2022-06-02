@@ -16,6 +16,13 @@ export class ProductoService {
   getProductos() : Observable<Producto[]>{
     const url : string = `${this.baseUrl}/productos` 
     return this.http.get<Producto[]>(url).pipe(
-      catchError(err=> of(err)))
+      catchError(err=> of(err))
+      )
   }
-}
+  getProductoById(id : string) : Observable<Producto>{
+    const url : string = `${this.baseUrl}/productos/${id}`
+    return this.http.get<Producto>(url).pipe(
+      catchError(err => of(err))
+    )
+  }
+} 

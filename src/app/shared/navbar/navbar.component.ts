@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
           {
               label:'Edit',
               icon:'pi pi-fw pi-pencil',
-              visible:false
           },
           {
               label:'Users',

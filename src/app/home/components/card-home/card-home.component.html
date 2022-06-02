@@ -8,7 +8,7 @@
   [responsiveOptions]="responsiveOptions"
 >
   <ng-template pTemplate="header">
-    <h5 class="text-center">Algunas de nuestras prendas</h5>
+    <h5 class="text-center fadeinleft animation-duration-1000">Algunas de nuestras prendas</h5>
   </ng-template>
   <ng-template let-product pTemplate="item">
     <div class="product-item">
@@ -27,6 +27,7 @@
             <p-button
               type="button"
               styleClass="p-button p-button-rounded mr-2"
+              [routerLink]="['/detail',product._id]"
               icon="pi pi-search"
             ></p-button>
             <p-button

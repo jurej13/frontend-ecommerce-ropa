@@ -31,5 +31,5 @@ export class CardHomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }
