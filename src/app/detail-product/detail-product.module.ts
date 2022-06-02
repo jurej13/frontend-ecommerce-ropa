@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DetailProductRoutingModule } from './detail-product-routing.module';
 import { DetailComponent } from './pages/detail/detail.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,7 @@ import { PrimengModule } from '../primeng/primeng.module';
     CommonModule,
     DetailProductRoutingModule,
     PrimengModule,
-    
+    FormsModule
   ]
 })
 export class DetailProductModule { }

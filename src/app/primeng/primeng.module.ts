@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MenubarModule} from 'primeng/menubar';
-import {CarouselModule} from 'primeng/carousel';
+
+
 import {ButtonModule} from 'primeng/button';
+import {CarouselModule} from 'primeng/carousel';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {MenubarModule} from 'primeng/menubar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 @NgModule({
   
@@ -10,8 +13,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ButtonModule,
     CarouselModule,
     CommonModule,
+    InputNumberModule,
     MenubarModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ]
 })
 export class PrimengModule { }

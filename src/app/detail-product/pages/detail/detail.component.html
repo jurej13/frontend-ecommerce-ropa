@@ -17,6 +17,42 @@
             <h3 class="text-center font-bold">{{product.nombre |titlecase}}</h3>
             <hr>
             <h3 class="text-center font-bold text-red-600 hover:text-red-800">{{product.precio |currency}}</h3>
+            <hr>
+            <h3 class="text-center font-bold">Talle</h3>
+            <div class="flex flex-wrap justify-content-center">
+                <div class="flex justify-content-center" *ngFor="let talle of talles">
+                    <div type="" class="m-3 p-3 cursor-pointer border-1 border-red-600 
+                        hover:bg-red-600 border-circle" *ngIf="revisarChecked(talle)"
+                        [ngClass]="changeToActive(talle)"
+                        (click)="mostrar(talle)"
+                        >
+                        {{talle}}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h3 class="text-center font-bold">Cantidad</h3>
+            <p-inputNumber [(ngModel)]="cantidad" [showButtons]="true"
+                class="flex justify-content-center"
+                buttonLayout="horizontal" spinnerMode="horizontal"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus" 
+                decrementButtonIcon="pi pi-minus"
+                [min]="1"
+                [max]="3"
+                (click)="verCantidad()"
+                ></p-inputNumber>
+            <hr>
+            <div class="flex justify-content-center flex-column">
+                    <button 
+                        pButton pRipple type="button" label="Agregar a Carrito"
+                        class="p-button-rounded p-button-danger m-1"></button>   
+              
+                    <button 
+                        pButton pRipple type="button" label="Agregar a Favoritos"
+                        class="p-button-rounded p-button-danger m-1"></button>   
+            </div>
         </div>
     </div>
 </ng-template>
