@@ -1,5 +1,16 @@
 <p-menubar class="col-12 p-0" [model]="items">
-  <ng-template pTemplate="end">
-    <input type="text" pInputText placeholder="Search" />
+  <ng-template  pTemplate="end">
+    <div class="flex ">
+      <input class='mr-3' type="text"  pInputText placeholder="Search" />
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="pi pi-user"></i>
+        </button>
+        <ul class="dropdown-menu m-1" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item p-1" [routerLink]="['/auth']">Iniciar Sesion</a></li>
+          <li><a class="dropdown-item p-1" [routerLink]="['/auth/register']">Registrarme</a></li>
+        </ul>
+      </div>
+    </div>
   </ng-template>
 </p-menubar>

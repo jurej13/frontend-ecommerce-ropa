@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private productoService : ProductoService,
     @Inject(DOCUMENT) private document : Document 
-    ) { }
+    ) {}
 
   ngOnInit(): void {
     this.productoService.getProductos()
@@ -27,10 +27,9 @@ export class HomeComponent implements OnInit {
   @HostListener('window:scroll')
     animationOnScroll(){
       const yOffSet = window.scrollY //numero de pixeles que se desplaza
-      const scrollTop = this.document.documentElement.scrollTop
-      
+      // if(screen ) ver forma de entrar al screen
       return (this.showComponent = (yOffSet) > 30)
-         ? 'scalein animation-duration-1000 animation-delay-400'
+         ? 'scalein animation-duration-1000 animation-delay-300'
          : ''
     }
  

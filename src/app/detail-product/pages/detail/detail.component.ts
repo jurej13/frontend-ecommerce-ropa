@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
-import { ErrorsProduct } from 'src/app/interfaces/error.interface';
+import { switchMap } from 'rxjs/operators';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -12,7 +11,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class DetailComponent implements OnInit {
   product !: Producto
-  talles : number[] = [36,38,40,42]
+  talles : number[] = [32,34,36,38,40,42]
   value : any = {
     talle : 0,
     toggleColor : false
@@ -23,10 +22,8 @@ export class DetailComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private productoService : ProductoService
-    ) { }
-
-  ngOnInit(): void {
-    
+    ) {}
+  ngOnInit(): void { 
     this.route.params.pipe(
       switchMap(({id})=> this.productoService.getProductoById(id))
     ).subscribe(
@@ -44,9 +41,7 @@ export class DetailComponent implements OnInit {
     this.value.talle = talle
     this.value.toggleColor = true
   }
-
   verCantidad(){
     console.log(this.cantidad)
   }
-
 }
