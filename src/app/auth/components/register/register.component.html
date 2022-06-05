@@ -1,1 +1,58 @@
-<p>register works!</p>
+<div class="container">
+  <h3 class="text-center text-bold">Registrarse</h3>
+  <form [formGroup]="miFormulario" (ngSubmit)="mostrar()">
+    <div class="flex flex-column justify-content-center align-items-center">
+      <div class="field col-12 md:col-4 m-2">
+        <span class="p-float-label w-full">
+          <input
+            type="text"
+            id="nombreTxt"
+            formControlName="nombre"
+            pInputText
+          />
+          <label for="nombreTxt">Nombre</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4 m-2">
+        <span class="p-float-label w-full">
+          <input type="text" id="emailTxt" formControlName="email" pInputText />
+          <label for="emailTxt">Email</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4 m-2">
+        <span class="p-float-label">
+          <input
+            type="password"
+            id="passwordTxt"
+            formControlName="password"
+            pInputText
+          />
+          <label for="passwordTxt">Password</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4 m-2">
+        <span class="p-float-label w-full">
+          <input
+            type="password"
+            id="password2Txt"
+            formControlName="password2"
+            pInputText
+          />
+          <label for="password2Txt">Confirm Password</label>
+        </span>
+      </div>
+      <button
+        pButton
+        pRipple
+        [disabled]="miFormulario.invalid"
+        type="submit"
+        label="Loguearse"
+        class="p-button-rounded p-button-danger m-1"
+      ></button>
+    </div>
+  </form>
+  <hr />
+  <a class="no-underline m-3" routerLink="/auth/login"
+    ><h5 class="text-center font-bold">Ya tienes cuenta?Click aqui</h5></a
+  >
+</div>
