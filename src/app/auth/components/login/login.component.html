@@ -9,6 +9,7 @@
         </span>
         <div class="col-auto">
           <span
+            class="text-red-500 mt-2"
             error-msg
             mensaje="Email Incorrecto"
             [valido]="!tieneError('email')"
@@ -29,6 +30,7 @@
         <div class="col-auto">
           <span
             error-msg
+            class="text-red-500 mt-2"
             mensaje="Password Incorrecto"
             [valido]="!tieneError('password')"
           >
@@ -44,6 +46,7 @@
         class="p-button-rounded p-button-danger m-1"
       ></button>
     </div>
+    <p-toast position="bottom-center"></p-toast>
   </form>
   <hr />
   <a class="no-underline m-3" routerLink="/auth/register"

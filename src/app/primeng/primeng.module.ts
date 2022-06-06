@@ -8,6 +8,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MenubarModule} from 'primeng/menubar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   
   exports: [
@@ -18,6 +19,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     InputNumberModule,
     MenubarModule,
     ProgressSpinnerModule,
+    ToastModule
   ]
 })
 export class PrimengModule { }

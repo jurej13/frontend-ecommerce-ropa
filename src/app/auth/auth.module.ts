@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorLoginDirective } from './directive/error-login.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,10 +19,12 @@ import { ErrorLoginDirective } from './directive/error-login.directive';
     ErrorLoginDirective
   ],
   imports: [
-    CommonModule,
     AuthRoutingModule,
+    CommonModule,
+    HttpClientModule,
     PrimengModule,
     ReactiveFormsModule
-  ]
+  ],
+  
 })
 export class AuthModule { }
