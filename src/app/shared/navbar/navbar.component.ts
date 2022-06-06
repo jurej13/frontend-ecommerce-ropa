@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import { AuthService } from '../../auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,9 +9,14 @@ import {MenuItem} from 'primeng/api';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-
   items !: MenuItem[];
+  
+  constructor(private authService : AuthService,
+   
+    ) {  
+  }
+  
+
 
   ngOnInit() {
       this.items = [
@@ -23,6 +30,9 @@ export class NavbarComponent implements OnInit {
               icon:'pi pi-fw pi-pencil',
           }
       ];
+    
   }
+  
+  
 
 }

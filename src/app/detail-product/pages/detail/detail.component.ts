@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -11,6 +12,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class DetailComponent implements OnInit {
   product !: Producto
+
   talles : number[] = [32,34,36,38,40,42]
   value : any = {
     talle : 0,
@@ -18,11 +20,12 @@ export class DetailComponent implements OnInit {
   }
   cantidad : number = 1
   
-
   constructor(
     private route : ActivatedRoute,
-    private productoService : ProductoService
+    private productoService : ProductoService,
+ 
     ) {}
+  
   ngOnInit(): void { 
     this.route.params.pipe(
       switchMap(({id})=> this.productoService.getProductoById(id))
@@ -44,4 +47,5 @@ export class DetailComponent implements OnInit {
   verCantidad(){
     console.log(this.cantidad)
   }
+  
 }

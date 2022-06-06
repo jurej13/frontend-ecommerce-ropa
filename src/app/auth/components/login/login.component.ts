@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb : FormBuilder,
     private authService : AuthService,
     private router : Router,
-    
+    private messageService : MessageService
     ) { }
 
   ngOnInit(): void {
@@ -28,7 +28,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.miFormulario.get('email')?.value,this.miFormulario.get('password')?.value)
       .subscribe(resp=> {
           if(resp){
-              this.router.navigate(['/home'])
+            this.messageService.add({severity:'success', summary: 'Success', detail: 'Login Succesful'});
+            setTimeout(()=>this.router.navigate(['/home']),2000)
+  
+              
           }
       })
   }
