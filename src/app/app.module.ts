@@ -8,7 +8,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ROOT_REDUCERS } from './state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthLoginEffectts } from './state/effects/authLogin.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +23,10 @@ import { MessageService } from 'primeng/api';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ name: 'test' }),
+    EffectsModule.forRoot([AuthLoginEffectts]) 
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
