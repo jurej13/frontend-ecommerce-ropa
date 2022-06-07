@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { switchMap,tap } from 'rxjs/operators';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
+import { AppState } from 'src/app/state/app.state';
+import { SelectToken } from 'src/app/state/selectors/authLogin.selectors';
 
 @Component({
   selector: 'app-detail',
@@ -19,11 +22,12 @@ export class DetailComponent implements OnInit {
     toggleColor : false
   }
   cantidad : number = 1
-  
+  token$ : Observable<string> = this.store.select(SelectToken)
   constructor(
     private route : ActivatedRoute,
     private productoService : ProductoService,
- 
+    private store : Store<AppState>,
+    private router : Router
     ) {}
   
   ngOnInit(): void { 
@@ -46,6 +50,9 @@ export class DetailComponent implements OnInit {
   }
   verCantidad(){
     console.log(this.cantidad)
+  }
+  agregarACarrito(){
+    
   }
   
 }

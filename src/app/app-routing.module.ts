@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren:()=> import('./auth/auth.module').then( m=> m.AuthModule)
   },
   {
+    path:'gender',
+    loadChildren:()=>import('./gender/gender.module').then(m=>m.GenderModule)
+  },
+  {
     path:'**',redirectTo:'home'
   }
 ];

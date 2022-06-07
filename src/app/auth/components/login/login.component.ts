@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   mostrar(){
-    console.log(this.miFormulario.value)
     this.store.dispatch(loginRequest(this.miFormulario.value))
     // this.authService.login(this.miFormulario.get('email')?.value,this.miFormulario.get('password')?.value)
     //   .subscribe(resp=> {

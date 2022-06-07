@@ -1,0 +1,12 @@
+<div class="flex flex-wrap">
+  <div class="col-3">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-8 flex flex-wrap justify-content-evenly">
+    <app-card
+      class="w-3 mx-2 mb-2"
+      *ngFor="let item of productos"
+      [item]="item"
+    ></app-card>
+  </div>
+</div>

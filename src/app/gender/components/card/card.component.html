@@ -1,0 +1,14 @@
+<p-card [header]="item.nombre" [subheader]="item.precio.toString()">
+  <ng-template pTemplate="header">
+    <img alt="Card" class="" [src]="item.img" />
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-center">
+      <p-button
+        label="Detalles"
+        [routerLink]="['/detail', item._id]"
+        icon="pi pi-check"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-card>

@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { LoginAuth } from 'src/app/interfaces/state-interface/loginAuth.state';
  
  
 
@@ -12,14 +11,14 @@ export const selectLoginAuth = (state: AppState) => state.usuario; //PADRE
  
 export const SelectToken = createSelector(
     selectLoginAuth,
-//   selectShopping, aca iria agregando nuevos selectores.
+//selectShopping, aca iria agregando nuevos selectores.
 
   (state) => state.token //HIJO
-//   (a:any,b:any) => state...
+// (a:any,b:any) => state...
 );
 export const SelectUser = createSelector(
   selectLoginAuth,
-//   selectShopping, aca iria agregando nuevos selectores.
+// selectShopping, aca iria agregando nuevos selectores.
 
 (state) => state.usuario //HIJO
 //   (a:any,b:any) => state...

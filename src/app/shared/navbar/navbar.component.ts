@@ -1,6 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import {MenuItem} from 'primeng/api';
+import { Observable } from 'rxjs';
+import { Logout } from 'src/app/state/actions/authLogin.actions';
+import { AppState } from 'src/app/state/app.state';
+import { SelectToken } from 'src/app/state/selectors/authLogin.selectors';
 import { AuthService } from '../../auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
@@ -10,14 +15,11 @@ import { AuthService } from '../../auth/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   items !: MenuItem[];
-  
-  constructor(private authService : AuthService,
-   
-    ) {  
-  }
-  
-
-
+  token$ : Observable<string> = this.store.select(SelectToken)
+  constructor(
+    private store : Store<AppState>
+    ) {
+    }
   ngOnInit() {
       this.items = [
           {
@@ -26,13 +28,18 @@ export class NavbarComponent implements OnInit {
               routerLink:'home'
           },
           {
-              label:'Edit',
-              icon:'pi pi-fw pi-pencil',
-          }
-      ];
-    
+              label:'Hombre',
+              icon:'pi pi-tag',
+              routerLink:'gender/hombre'
+          },
+          {
+              label:'Mujer',
+              icon:'pi pi-tag',
+              routerLink:'gender/mujer'
+          },
+      ]; 
   }
-  
-  
-
+  logout(){
+    this.store.dispatch(Logout())
+  }
 }

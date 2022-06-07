@@ -16,6 +16,7 @@ import { AuthLoginEffectts } from './state/effects/authLogin.effects';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     CommonModule,

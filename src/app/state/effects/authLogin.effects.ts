@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { MessageService } from 'primeng/api';
 import {  exhaustMap, map,tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoginSuccess } from '../actions/authLogin.actions';
@@ -13,7 +14,8 @@ export class AuthLoginEffectts {
     constructor(
         private actions$: Actions,
         private authService: AuthService,
-        private router : Router
+        private router : Router,
+        private messageService : MessageService
       ) {}
   loginRequest$ = createEffect(() =>
     this.actions$.pipe(
@@ -29,7 +31,8 @@ export class AuthLoginEffectts {
     this.actions$.pipe(
       ofType('[Usuario Login] Login success'),
       tap(()=>{
-        this.router.navigateByUrl('/')
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Login Succesful'});
+        setTimeout(()=>this.router.navigateByUrl('/home') ,800)
       })
     ),
     {dispatch:false}
@@ -38,7 +41,7 @@ export class AuthLoginEffectts {
     this.actions$.pipe(
       ofType('[Usuario Logout] Logout success'),
       tap(()=>{
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/auth')
       })
     ),
     {dispatch:false}

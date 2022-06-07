@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError,map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Producto } from '../interfaces/productos.interface';
 
@@ -23,6 +23,22 @@ export class ProductoService {
     const url : string = `${this.baseUrl}/productos/${id}`
     return this.http.get<Producto>(url).pipe(
       catchError(err => of(err))
+    )
+  }
+  getProductosForHombre(cat : string) : Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/productos/generos/HOMBRE`
+    return this.http.get<Producto[]>(url).pipe(
+      map(
+        resp=>{
+          const itemsArr : Producto[] = []  
+          resp.forEach(prod =>{
+            if(cat===prod.categoria.nombre){
+              itemsArr.push(prod)
+            }
+          })
+          return itemsArr
+        }
+        )
     )
   }
 } 

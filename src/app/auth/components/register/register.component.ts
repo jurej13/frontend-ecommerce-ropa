@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
         if(resp){
           this.messageService.add({severity:'success', summary: 'Success', detail: 'Usuario creado con exito.'});
           setTimeout(()=>this.router.navigate(['/auth']),2000)
-          
         }
       })
   }
