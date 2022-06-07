@@ -8,6 +8,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class SidebarComponent implements OnInit {
   categorias  : string[] = ['REMERAS','CAMPERAS','PANTALON'] 
+  talles : string[] = ['36','38','40','42']
   items !: MenuItem[];
 
   ngOnInit() {
@@ -44,21 +45,25 @@ export class SidebarComponent implements OnInit {
           icon:'pi pi-search-plus',
           items: [
               {
-                  label: 'Left',
-                  icon:'pi pi-search-plus'
+                  label: '36',
+                  icon:'pi pi-search-plus',
+                  routerLink:['/gender/hombre/talles',this.talles[0]]
               },
               {
-                  label: 'Right',
-                  icon:'pi pi-search-plus'
+                  label: '38',
+                  icon:'pi pi-search-plus',
+                  routerLink:['/gender/hombre/talles',this.talles[1]]
               },
               {
-                  label: 'Center',
-                  icon:'pi pi-search-plus'
+                  label: '40',
+                  icon:'pi pi-search-plus',
+                  routerLink:['/gender/hombre/talles',this.talles[2]]
               },
               {
-                  label: 'Justify',
-                  icon:'pi pi-search-plus'
-              }
+                  label: '42',
+                  icon:'pi pi-search-plus',
+                  routerLink:['/gender/hombre/talles',this.talles[3]]
+              },
           ]
           },
       ]

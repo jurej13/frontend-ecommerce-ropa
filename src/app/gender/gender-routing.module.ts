@@ -11,6 +11,7 @@ const routes: Routes = [
     children:[
       {path:'hombre',component:HombreComponent},
       {path:'hombre/:cat',component:HombreComponent},
+      {path:'hombre/talles/:talle',component:HombreComponent},
       {path:'mujer',component:MujerComponent},
       {path:'**',redirectTo:''}
     ]

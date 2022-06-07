@@ -25,7 +25,11 @@ export class ProductoService {
       catchError(err => of(err))
     )
   }
-  getProductosForHombre(cat : string) : Observable<Producto[]>{
+  getProductByGender(gender : string): Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/productos/generos/${gender}`
+    return this.http.get<Producto[]>(url)
+  }
+  getProductosByCat(cat : string) : Observable<Producto[]>{
     const url : string = `${this.baseUrl}/productos/generos/HOMBRE`
     return this.http.get<Producto[]>(url).pipe(
       map(
@@ -39,6 +43,24 @@ export class ProductoService {
           return itemsArr
         }
         )
+    )
+  }
+  getProductosByTalle(talle:string) :Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/productos/generos/HOMBRE`
+    
+    return this.http.get<Producto[]>(url).pipe(
+      map(resp=>{
+        const itemsArr : Producto[] = []
+        resp.forEach(prod=>{
+          prod.talle.forEach(talleProd=>{
+            if(talleProd == Number(talle)){
+              itemsArr.push(prod)
+              
+            }
+          })
+        })
+        return itemsArr
+      })
     )
   }
 } 
