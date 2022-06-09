@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import {  Observable, of } from 'rxjs';
 import { catchError,map,switchMap,tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Usuario } from '../auth/interface/authResponse.interface';
+import { FavoriteResponse } from '../interfaces/favoriteResponse.interface';
 import { Producto } from '../interfaces/productos.interface';
 
 @Injectable({
@@ -63,16 +65,33 @@ export class ProductoService {
       })
     )
   }
-  getProductosFavoritos(id : string,token : string){
-    const url : string = `${this.baseUrl}/favoritos/${id}`
+  getProductosFavoritos(idUsuario : string,token : string){
+    const url : string = `${this.baseUrl}/favoritos/${idUsuario}`
     const headers = new HttpHeaders()
       .set('x-token',token)
     
     return this.http.get<any>(url,{headers}).pipe(
-        map(({favorites})=>{
-          
-          return favorites})
-    )
+        map(({favorites})=>{  
+          return favorites}))
+  }
+  addFavorite(idUsuario:string,token:string,idFavorite:string){
+    const url : string = `${this.baseUrl}/favoritos/new/${idUsuario}`
+    console.log('idFAvorito',idFavorite)
+    const headers = new HttpHeaders()
+    .set('x-token',token)
+    return this.http.post(url,{idFavorite},{headers})
+  }
+
+  deleteFavoriteById(idUsuario: string,token : string,idProducto : string){
+    const url : string = `${this.baseUrl}/favoritos/delete/${idUsuario}`
+    const options ={
+      headers : new HttpHeaders()
+        .set('x-token',token),
+      body:{
+        idFavorite:idProducto
+      }
+    }
+    return this.http.delete<Usuario>(url,options)
   }
 
 

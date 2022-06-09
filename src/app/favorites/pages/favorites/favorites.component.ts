@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, switchMap } from 'rxjs';
+import { Usuario } from 'src/app/auth/interface/authResponse.interface';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AppState } from 'src/app/state/app.state';
-import { SelectToken } from 'src/app/state/selectors/authLogin.selectors';
+import { SelectToken, SelectUser } from 'src/app/state/selectors/authLogin.selectors';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-favorites',
@@ -16,20 +18,32 @@ export class FavoritesComponent implements OnInit {
   
   token$ : Observable<string> = this.store.select(SelectToken)
   token : string = ''
-  id : string = '624c7589f166067dcb572e8e'
+  usuario$ : Observable<Usuario> = this.store.select(SelectUser)
+  idUsuario !: string
   productos !: Producto[]
   
   
   constructor(private productoService : ProductoService,
-      private store : Store<AppState>
+      private store : Store<AppState>,
+      private messageService : MessageService
     ) {
       this.token$.subscribe(token=> this.token = token)
+      this.usuario$.subscribe(resp => this.idUsuario = resp.uid)
      }
-  
-  
-  
   ngOnInit(): void {
-    this.productoService.getProductosFavoritos(this.id,this.token)
+    this.getFavorites()
+  }
+  deleteFavorite(event : string){
+    this.productoService.deleteFavoriteById(this.idUsuario,this.token,event)
+      .subscribe(_=>{
+        this.messageService.add(
+          {severity:'success', summary: 'Success', detail:'Eliminado de Favoritos con exito' }
+          );
+        setTimeout(()=>this.getFavorites(),1000)
+      })
+  }
+  getFavorites(){
+    this.productoService.getProductosFavoritos(this.idUsuario,this.token)
       .pipe(
         map(resp =>{
           const itemsArr : any[] = []
@@ -43,8 +57,6 @@ export class FavoritesComponent implements OnInit {
            })
           })
       ).subscribe()
-      
-
   }
 
 }

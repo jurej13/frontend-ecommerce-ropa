@@ -37,10 +37,6 @@ export class HombreComponent implements OnInit,OnDestroy {
       this.productosSubscription=this.route.params.pipe(
         switchMap(({talle})=>this.productService.getProductosByTalle(talle))
       ).subscribe(resp=> this.productos = resp)
-    }
-    
+    }  
   }
-
-  
-
 }

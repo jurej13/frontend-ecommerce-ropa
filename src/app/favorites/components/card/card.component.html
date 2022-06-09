@@ -15,7 +15,9 @@
         type="button"
         icon="pi pi-star-fill"
         class="p-button-rounded p-button-danger"
+        (click)="deleteFavorite(item._id)"
       ></button>
+      <p-toast position="bottom-center"></p-toast>
     </div>
   </ng-template>
 </p-card>

@@ -70,9 +70,12 @@
           pButton
           pRipple
           type="button"
+          (click)="addFavorite(product._id)"
           label="Agregar a Favoritos"
           class="p-button-rounded p-button-danger m-1"
         ></button>
+        <p-toast position="bottom-center"></p-toast>
+
       </div>
     </div>
   </div>

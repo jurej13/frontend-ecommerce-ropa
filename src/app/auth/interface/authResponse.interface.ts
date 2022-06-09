@@ -10,4 +10,5 @@ export interface Usuario {
     rol:    string;
     estado: boolean;
     uid:    string;
+    favorites ?: string[]
 }
