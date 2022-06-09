@@ -1,6 +1,7 @@
 <p-menubar class="col-12 p-0" [model]="items">
   <ng-template pTemplate="end">
     <div class="flex">
+      <div></div>
       <input class="mr-3" type="text" pInputText placeholder="Search" />
       <div *ngIf="token$ | async; else divLogued" class="dropdown">
         <button
@@ -13,6 +14,9 @@
           <i class="pi pi-user"></i>
         </button>
         <ul class="dropdown-menu m-1" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item p-1" routerLink="/favoritos">Favoritos</a>
+          </li>
           <li><a class="dropdown-item p-1" (click)="logout()">Logout</a></li>
         </ul>
       </div>

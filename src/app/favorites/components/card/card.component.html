@@ -3,12 +3,19 @@
     <img alt="Card" class="" [src]="item.img" />
   </ng-template>
   <ng-template pTemplate="footer">
-    <div class="flex justify-content-center">
+    <div class="flex flex-wrap justify-content-evenly">
       <p-button
         label="Detalles"
         [routerLink]="['/detail', item._id]"
         icon="pi pi-check"
       ></p-button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-star-fill"
+        class="p-button-rounded p-button-danger"
+      ></button>
     </div>
   </ng-template>
 </p-card>

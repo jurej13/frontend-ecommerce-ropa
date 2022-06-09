@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  Observable, of } from 'rxjs';
-import { catchError,map } from 'rxjs/operators';
+import { catchError,map,switchMap,tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Producto } from '../interfaces/productos.interface';
 
@@ -63,4 +63,17 @@ export class ProductoService {
       })
     )
   }
+  getProductosFavoritos(id : string,token : string){
+    const url : string = `${this.baseUrl}/favoritos/${id}`
+    const headers = new HttpHeaders()
+      .set('x-token',token)
+    
+    return this.http.get<any>(url,{headers}).pipe(
+        map(({favorites})=>{
+          
+          return favorites})
+    )
+  }
+
+
 } 

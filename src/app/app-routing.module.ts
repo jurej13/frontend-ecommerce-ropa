@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren:()=>import('./gender/gender.module').then(m=>m.GenderModule)
   },
   {
+    path:'favoritos',
+    loadChildren:()=> import('./favorites/favorites.module').then(m=>m.FavoritesModule)
+  },
+  {
     path:'**',redirectTo:'home'
   }
 ];
