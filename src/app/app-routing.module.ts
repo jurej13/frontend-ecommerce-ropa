@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FavoritoCarritoGuard } from './guards/favorito-carrito.guard';
+import { LoginRegisterGuard } from './guards/login-register.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +14,8 @@ const routes: Routes = [
   },
   {
     path:'auth',
-    loadChildren:()=> import('./auth/auth.module').then( m=> m.AuthModule)
+    loadChildren:()=> import('./auth/auth.module').then( m=> m.AuthModule),
+    canActivate:[LoginRegisterGuard]
   },
   {
     path:'gender',
@@ -20,11 +23,15 @@ const routes: Routes = [
   },
   {
     path:'favoritos',
-    loadChildren:()=> import('./favorites/favorites.module').then(m=>m.FavoritesModule)
+    loadChildren:()=> import('./favorites/favorites.module').then(m=>m.FavoritesModule),
+    canActivate:[FavoritoCarritoGuard],
+    canLoad:[FavoritoCarritoGuard]
   },
   {
     path:'shoppingCart',
-    loadChildren:()=>import('./shopping-cart/shopping-cart.module').then(m=>m.ShoppingCartModule)
+    loadChildren:()=>import('./shopping-cart/shopping-cart.module').then(m=>m.ShoppingCartModule),
+    canActivate:[FavoritoCarritoGuard],
+    canLoad:[FavoritoCarritoGuard]
   },
   {
     path:'**',redirectTo:'home'

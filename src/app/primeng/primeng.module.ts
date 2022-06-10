@@ -12,6 +12,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToastModule} from 'primeng/toast';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {SidebarModule} from 'primeng/sidebar';
+
 @NgModule({
   exports: [
     BadgeModule,
@@ -26,7 +27,6 @@ import {SidebarModule} from 'primeng/sidebar';
     ProgressSpinnerModule,
     PanelMenuModule,
     ToastModule,
-    
   ]
 })
 export class PrimengModule { }

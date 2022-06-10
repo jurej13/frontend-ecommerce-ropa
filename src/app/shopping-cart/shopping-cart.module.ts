@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { ShoppingCartRoutingModule } from './shopping-cart-routing.module';
 import { ShoppingComponent } from './pages/shopping/shopping.component';
-import { TableShoppingComponent } from './component/table-shopping/table-shopping.component';
+import { CardShoppingcarComponent } from './component/card-shoppingcar/card-shoppingcar.component';
+import { PrimengModule } from '../primeng/primeng.module';
 
 
 @NgModule({
   declarations: [
     ShoppingComponent,
-    TableShoppingComponent
+    CardShoppingcarComponent,
+    
   ],
   imports: [
     CommonModule,
-    ShoppingCartRoutingModule
+    ShoppingCartRoutingModule,
+    PrimengModule
   ]
 })
 export class ShoppingCartModule { }

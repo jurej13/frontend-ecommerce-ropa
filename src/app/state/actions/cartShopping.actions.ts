@@ -1,16 +1,8 @@
 import { createAction, props } from "@ngrx/store"
 import {Producto} from '../../interfaces/productos.interface'
 
-/*
-    productoCart={
-        idProducto,   nombre,precio,cantidad,talle,img
-    }
-*/
 
-export const beforeAddTo = createAction(
-    '[Shopping Cart] Add success',
-    props<{productoCart : Producto,cantidad : number}>()
-)
+
 export const addToCart = createAction(
     '[Shopping Cart] Add success',
     props<{productoCart : Producto,cantidad : number}>()

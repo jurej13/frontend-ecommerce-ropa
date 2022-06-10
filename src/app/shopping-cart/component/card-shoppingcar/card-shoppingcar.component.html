@@ -1,0 +1,17 @@
+<p-card [header]="item.categoria.nombre" [subheader]="item.precio.toString()">
+    <ng-template pTemplate="header">
+      <img alt="Card" class="" [src]="item.img" />
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-center">
+        <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-star-fill"
+        class="p-button-rounded p-button-danger"
+        (click)="deleteFromCart(item)"
+      ></button>
+      </div>
+    </ng-template>
+</p-card>

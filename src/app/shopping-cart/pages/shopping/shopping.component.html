@@ -1,1 +1,21 @@
-<p>shopping works!</p>
+<div class="mt-3">
+  <h3 class="text-center font-bold">Carrito</h3>
+  <div class="col-12 flex flex-wrap justify-content-center  scalein animation-duration-1000 animation-delay-600" >
+    <app-card-shoppingcar
+        class="w-full mx-2 mb-2 sm:w-full md:w-3 xl:w-3"
+        *ngFor="let item of productosCart"
+        [item]="item"
+        (deleteItem)="deleteFromChart($event)"
+      ></app-card-shoppingcar>
+    </div>
+    <div class="flex justify-content-center align-items-center">
+      <button pButton pRipple type="button"
+      (click)="realizarCompra()" 
+      label="Realizar Compra" class=" p-button-rounded"></button>
+    </div> 
+    
+  </div>
+
+
+
+
