@@ -11,6 +11,7 @@ export interface Producto {
     descripcion: string;
     disponible:  boolean;
     img:         string;
+    cantidad ?:  number;
 }
 
 export interface UsuYCat {

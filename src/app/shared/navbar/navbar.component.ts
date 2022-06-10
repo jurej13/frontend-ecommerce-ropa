@@ -3,9 +3,12 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {MenuItem} from 'primeng/api';
 import { isEmpty, Observable } from 'rxjs';
+import { Producto } from 'src/app/interfaces/productos.interface';
 import { Logout } from 'src/app/state/actions/authLogin.actions';
+import { cleanCart } from 'src/app/state/actions/cartShopping.actions';
 import { AppState } from 'src/app/state/app.state';
 import { SelectToken } from 'src/app/state/selectors/authLogin.selectors';
+import { selectShopping } from 'src/app/state/selectors/shopping.selectors';
 import { AuthService } from '../../auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
@@ -13,14 +16,20 @@ import { AuthService } from '../../auth/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  visibleSidebar1: boolean = true
   items !: MenuItem[];
   token$ : Observable<string> = this.store.select(SelectToken)
+  shopping$ : Observable<Producto[]> = this.store.select(selectShopping)
+  shopping !: Producto[]
   visible : boolean = false
-  visible2 !: any 
+  visible2 !: any
   constructor(
     private store : Store<AppState>
-    ) { } 
+    ) { 
+      this.shopping$.subscribe(resp=>{
+        this.shopping = resp
+      } )
+    } 
     
   ngOnInit() {
     
@@ -45,6 +54,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     this.store.dispatch(Logout())
+    this.store.dispatch(cleanCart())
   }
   
 

@@ -7,6 +7,7 @@ import { switchMap,tap } from 'rxjs/operators';
 import { Usuario } from 'src/app/auth/interface/authResponse.interface';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductoService } from 'src/app/services/producto.service';
+import { addToCart, beforeAddTo } from 'src/app/state/actions/cartShopping.actions';
 import { AppState } from 'src/app/state/app.state';
 import { SelectToken, SelectUser } from 'src/app/state/selectors/authLogin.selectors';
 
@@ -57,18 +58,14 @@ export class DetailComponent implements OnInit {
     this.value.talle = talle
     this.value.toggleColor = true
   }
-  verCantidad(){
-    console.log(this.cantidad)
-  }
-  agregarACarrito(){
-    
+  
+  addToCart(){
+    this.store.dispatch(addToCart({productoCart :this.product, cantidad : this.cantidad}))
   }
   addFavorite(idFavorite : string){
     this.productoService.addFavorite(this.idUsuario,this.token,idFavorite)
       .subscribe(_=>{
         this.messageService.add({severity:'success', summary: 'Success', detail: 'Added to favorite succesful.'});
-
       })
   }
-  
 }

@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren:()=> import('./favorites/favorites.module').then(m=>m.FavoritesModule)
   },
   {
+    path:'shoppingCart',
+    loadChildren:()=>import('./shopping-cart/shopping-cart.module').then(m=>m.ShoppingCartModule)
+  },
+  {
     path:'**',redirectTo:'home'
   }
 ];

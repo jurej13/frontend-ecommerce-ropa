@@ -1,8 +1,16 @@
 <p-menubar class="col-12 p-0" [model]="items">
   <ng-template pTemplate="end">
     <div class="flex">
-      <div></div>
       <input class="mr-3" type="text" pInputText placeholder="Search" />
+      <div *ngIf="token$ | async" class="flex justify-content-center mt-2 mx-2">
+        <i
+          class="pi pi-shopping-cart mr-4 p-text-secondary"
+          pBadge
+          style="font-size: 2rem"
+          [value]="shopping.length.toString()"
+          routerLink="/shoppingCart"
+        ></i>
+      </div>
       <div *ngIf="token$ | async; else divLogued" class="dropdown">
         <button
           class="btn btn-secondary dropdown-toggle"
