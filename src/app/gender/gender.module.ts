@@ -8,6 +8,7 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { HombreComponent } from './pages/hombre/hombre.component';
 import { MujerComponent } from './pages/mujer/mujer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarMujerComponent } from './components/sidebar-mujer/sidebar-mujer.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CardComponent,
     HombreComponent,
     MujerComponent,
-    SidebarComponent
+    SidebarComponent,
+    SidebarMujerComponent
   ],
   imports: [
     CommonModule,

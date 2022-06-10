@@ -51,7 +51,10 @@ export class CardHomeComponent implements OnInit {
   addFavorite(idFavorite : string){
     this.productService.addFavorite(this.idUsuario,this.token,idFavorite)
       .subscribe(_=>{
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Added to favorite succesful.'});
+        this.messageService.add(
+          {severity:'success', summary: 'Success',
+           detail: 'Added to favorite succesful.'}
+           );
       })
   }
  

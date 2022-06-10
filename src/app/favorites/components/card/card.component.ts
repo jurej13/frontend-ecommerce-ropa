@@ -10,17 +10,15 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class CardComponent implements OnInit {
   @Input() item !: Producto
-  @Input() token !: string
-  @Input() idUsuario !: string
+  // @Input() token !: string
+  // @Input() idUsuario !: string
   @Output() deleteItem = new EventEmitter()
   constructor(
   ) { }
 
   ngOnInit(): void {
   }
-
   deleteFavorite(idProducto: string){
     this.deleteItem.emit(idProducto)
   }
-
 }

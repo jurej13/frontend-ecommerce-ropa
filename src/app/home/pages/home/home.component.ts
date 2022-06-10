@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
       .subscribe({next:productos => {this.productos = productos},
         error:err => console.log(err)})
   }
-  
   // @HostListener('window:scroll')
   //   animationOnScroll(){
   //     const yOffSet = window.scrollY //numero de pixeles que se desplaza
@@ -31,7 +30,4 @@ export class HomeComponent implements OnInit {
   //        ? 'scalein animation-duration-1000 animation-delay-300'
   //        : ''
   //   }
- 
-  
-
 }

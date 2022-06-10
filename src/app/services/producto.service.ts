@@ -47,9 +47,41 @@ export class ProductoService {
         )
     )
   }
+  getProductosByCatMujer(cat : string) : Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/productos/generos/MUJER`
+    return this.http.get<Producto[]>(url).pipe(
+      map(
+        resp=>{
+          const itemsArr : Producto[] = []  
+          resp.forEach(prod =>{
+            if(cat===prod.categoria.nombre){
+              itemsArr.push(prod)
+            }
+          })
+          return itemsArr
+        }
+        )
+    )
+  }
   getProductosByTalle(talle:string) :Observable<Producto[]>{
     const url : string = `${this.baseUrl}/productos/generos/HOMBRE`
-    
+    return this.http.get<Producto[]>(url).pipe(
+      map(resp=>{
+        const itemsArr : Producto[] = []
+        resp.forEach(prod=>{
+          prod.talle.forEach(talleProd=>{
+            if(talleProd == Number(talle)){
+              itemsArr.push(prod)
+              
+            }
+          })
+        })
+        return itemsArr
+      })
+    )
+  }
+  getProductosByTalleMujer(talle:string) :Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/productos/generos/MUJER`
     return this.http.get<Producto[]>(url).pipe(
       map(resp=>{
         const itemsArr : Producto[] = []
@@ -76,7 +108,6 @@ export class ProductoService {
   }
   addFavorite(idUsuario:string,token:string,idFavorite:string){
     const url : string = `${this.baseUrl}/favoritos/new/${idUsuario}`
-    console.log('idFAvorito',idFavorite)
     const headers = new HttpHeaders()
     .set('x-token',token)
     return this.http.post(url,{idFavorite},{headers})

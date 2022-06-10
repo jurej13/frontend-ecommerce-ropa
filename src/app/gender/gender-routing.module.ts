@@ -13,6 +13,8 @@ const routes: Routes = [
       {path:'hombre/:cat',component:HombreComponent},
       {path:'hombre/talles/:talle',component:HombreComponent},
       {path:'mujer',component:MujerComponent},
+      {path:'mujer/:cat',component:MujerComponent},
+      {path:'mujer/talles/:talle',component:MujerComponent},
       {path:'**',redirectTo:''}
     ]
   }

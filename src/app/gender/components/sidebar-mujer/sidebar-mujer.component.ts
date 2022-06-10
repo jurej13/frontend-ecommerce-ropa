@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: 'app-sidebar-mujer',
+  templateUrl: './sidebar-mujer.component.html',
+  styleUrls: ['./sidebar-mujer.component.css']
 })
-export class SidebarComponent implements OnInit {
-  categorias  : string[] = ['REMERAS','CAMPERAS','PANTALON'] 
+export class SidebarMujerComponent implements OnInit {
+  categorias  : string[] = ['REMERAS','CAMPERAS','PANTALONES'] 
   talles : string[] = ['36','38','40','42']
   items !: MenuItem[];
 
@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
           {
             label:'Todos',
             icon: 'pi pi-search-plus',
-            routerLink:'/gender/hombre'
+            routerLink:'/gender/mujer'
           },
           {
           label: 'Categorias',
@@ -25,17 +25,17 @@ export class SidebarComponent implements OnInit {
               {
                   label: 'Remeras',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre',this.categorias[0]]
+                  routerLink:['/gender/mujer',this.categorias[0]]
               },
               {
                   label: 'Camperas',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre',this.categorias[1]]
+                  routerLink:['/gender/mujer',this.categorias[1]]
                 },
               {
                   label: 'Pantalon',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre',this.categorias[2]]
+                  routerLink:['/gender/mujer',this.categorias[2]]
                 }
           ]
           },
@@ -46,22 +46,22 @@ export class SidebarComponent implements OnInit {
               {
                   label: '36',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre/talles',this.talles[0]]
+                  routerLink:['/gender/mujer/talles',this.talles[0]]
               },
               {
                   label: '38',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre/talles',this.talles[1]]
+                  routerLink:['/gender/mujer/talles',this.talles[1]]
               },
               {
                   label: '40',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre/talles',this.talles[2]]
+                  routerLink:['/gender/mujer/talles',this.talles[2]]
               },
               {
                   label: '42',
                   icon:'pi pi-search-plus',
-                  routerLink:['/gender/hombre/talles',this.talles[3]]
+                  routerLink:['/gender/mujer/talles',this.talles[3]]
               },
           ]
           },

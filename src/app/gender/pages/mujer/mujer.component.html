@@ -1,1 +1,20 @@
-<p>mujer works!</p>
+<div
+  class="col-12 flex flex-wrap flex-column sm:flex-row md:flex-row xl:flex-row"
+>
+  <div class="col-12 sm:col-3 md:col-3 xl:col-3">
+    <app-sidebar-mujer></app-sidebar-mujer>
+  </div>
+  <!-- <div *ngIf="!productos;else divCards">
+      <p-progressSpinner></p-progressSpinner>
+    
+    </div> -->
+  <div
+    class="col-8 flex flex-wrap justify-content-evenly scalein animation-duration-1000 animation-delay-600"
+  >
+    <app-card
+      class="w-full mx-2 mb-2 sm:w-full md:w-3 xl:w-3"
+      *ngFor="let item of productos"
+      [item]="item"
+    ></app-card>
+  </div>
+</div>
