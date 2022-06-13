@@ -23,5 +23,4 @@ export const shoppingReducer = createReducer(
     on(cleanCart,(state)=>{
         return {...state,total:initialState.total,productosCart:initialState.productosCart}
     })
-    
 )

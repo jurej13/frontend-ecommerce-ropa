@@ -2,6 +2,12 @@
     <ng-template pTemplate="header">
       <img alt="Card" class="" [src]="item.img" />
     </ng-template>
+    <div *ngIf="item">
+      cantidad <input type="number"  [(ngModel)]="cantidad"/>
+      <button type="submit" (click)="mostrar()">
+        cambiar Cantidad
+      </button>
+    </div>
     <ng-template pTemplate="footer">
       <div class="flex justify-content-center">
         <button

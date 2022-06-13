@@ -69,9 +69,9 @@ export class DetailComponent implements OnInit {
       productoCart:this.product,
       cantidad : this.cantidad
     }
-    console.log('addToCart en detail',this.productosCart)
     if(!this.productosCart.includes(producto.productoCart)){
-      producto.cantidad = this.cantidad
+      producto.productoCart.cantidad = this.cantidad
+
       this.store.dispatch(addToCart(producto))
       this.messageService.add({key:'carrito',severity:'success', summary: 'Success', detail: 'Added to cart succesful.'});
     }else{

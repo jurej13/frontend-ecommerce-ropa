@@ -8,7 +8,10 @@
         (deleteItem)="deleteFromChart($event)"
       ></app-card-shoppingcar>
     </div>
-    <div class="flex justify-content-center align-items-center">
+    <div class="flex justify-content-center align-items-center flex-column">
+      <span class="m-2">
+        <h3 class="text-center font-bold">Total a pagar : {{total | currency}}</h3>
+      </span>
       <button pButton pRipple type="button"
       (click)="realizarCompra()" 
       label="Realizar Compra" class=" p-button-rounded"></button>

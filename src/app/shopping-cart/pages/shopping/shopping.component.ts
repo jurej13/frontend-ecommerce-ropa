@@ -5,6 +5,7 @@ import { Producto } from 'src/app/interfaces/productos.interface';
 import { AppState } from 'src/app/state/app.state';
 import { selectShopping } from 'src/app/state/selectors/shopping.selectors';
 import { cleanCart, removeFromCart } from '../../../state/actions/cartShopping.actions';
+import { selectTotalPrice } from '../../../state/selectors/shopping.selectors';
 
 @Component({
   selector: 'app-shopping',
@@ -14,12 +15,14 @@ import { cleanCart, removeFromCart } from '../../../state/actions/cartShopping.a
 export class ShoppingComponent implements OnInit {
   productosCart$  = this.store.select(selectShopping)
   productosCart !: Producto[]
+  total !: number
   constructor(private store : Store<AppState>,
       private router : Router
     ) { }
 
   ngOnInit(): void {
     this.productosCart$.subscribe(resp=> this.productosCart = resp)
+    this.store.select(selectTotalPrice).subscribe(resp => this.total = resp)
   }
   deleteFromChart(item : Producto){
     this.store.dispatch(removeFromCart({productoCart:item}))

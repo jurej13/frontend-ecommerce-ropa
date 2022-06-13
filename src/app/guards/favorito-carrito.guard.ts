@@ -10,7 +10,7 @@ import { selectShopping } from '../state/selectors/shopping.selectors';
 @Injectable({
   providedIn: 'root'
 })
-export class FavoritoCarritoGuard implements CanActivate, CanLoad {
+export class CarritoGuard implements CanActivate, CanLoad {
   token !: string
   productosCart !: Producto[]
   constructor(private store : Store<AppState>,private route : Router){
@@ -29,7 +29,7 @@ export class FavoritoCarritoGuard implements CanActivate, CanLoad {
   }
   canLoad(
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.token == '' && this.productosCart.length == 0){
+      if(this.token == '' || this.productosCart.length == 0){
         // anda a logearte , osea return false.
         this.route.navigate(['auth/login'])
         return false
