@@ -5,7 +5,7 @@ import {Producto} from '../../interfaces/productos.interface'
 
 export const addToCart = createAction(
     '[Shopping Cart] Add success',
-    props<{productoCart : Producto,cantidad : number}>()
+    props<{productoCart : Producto,cantidad : number }>()
 )
 export const removeFromCart = createAction(
   '[Shopping Cart] Remove item',

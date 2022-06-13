@@ -2,19 +2,29 @@
     <ng-template pTemplate="header">
       <img alt="Card" class="" [src]="item.img" />
     </ng-template>
-    <div *ngIf="item">
-      cantidad <input type="number"  [(ngModel)]="cantidad"/>
-      <button type="submit" (click)="mostrar()">
-        cambiar Cantidad
-      </button>
+    <div *ngIf="item" class="flex flex-column justify-content-center align-items-center">
+        <label class="text-center font-bold m-1">Cantidad</label>
+        <p-inputNumber [(ngModel)]="cantidad" class="m-3"
+        [size]="3"
+        [showButtons]="true"  [min]="1" [max]="5">
+        </p-inputNumber>
+        <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-check"
+        class="p-button-rounded p-button-primary"
+        (click)="deleteFromCart(item)"
+      ></button>
     </div>
     <ng-template pTemplate="footer">
+      <hr>
       <div class="flex justify-content-center">
         <button
         pButton
         pRipple
         type="button"
-        icon="pi pi-star-fill"
+        icon="pi pi-times"
         class="p-button-rounded p-button-danger"
         (click)="deleteFromCart(item)"
       ></button>
