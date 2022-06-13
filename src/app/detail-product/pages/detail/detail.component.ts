@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
@@ -30,7 +30,7 @@ export class DetailComponent implements OnInit {
   usuario$ :Observable<Usuario> = this.store.select(SelectUser)
   productosCart$  = this.store.select(selectShopping)
   productosCart !: Producto[]
-
+  checkProductosCart : boolean = false
   token !: string
   idUsuario !: string
   constructor(
@@ -42,15 +42,22 @@ export class DetailComponent implements OnInit {
       this.token$.subscribe(resp=> this.token = resp)
       this.usuario$.subscribe(resp=> this.idUsuario = resp.uid)
       this.productosCart$.subscribe(resp=> this.productosCart = resp)
-    }
-  
-  
+    }   
   ngOnInit(): void { 
     
     this.route.params.pipe(
       switchMap(({id})=> this.productoService.getProductoById(id))
     ).subscribe(
-      (resp) => this.product = resp )
+      (resp) => {this.product = resp 
+        this.productosCart.forEach(resp=> {
+          if(resp._id == this.product._id){
+            this.checkProductosCart = true
+          }else{        
+            this.checkProductosCart = false
+          }
+        })
+      })
+    
   }
 
   revisarChecked (talle : number) {
@@ -71,9 +78,10 @@ export class DetailComponent implements OnInit {
       cantidad : this.cantidad
     }
     
-    if(!this.productosCart.includes(this.product)){
+    if(this.checkProductosCart == false){
       producto.productoCart.cantidad = this.cantidad
       this.store.dispatch(addToCart(producto))
+      this.checkProductosCart = true
       this.messageService.add({key:'carrito',severity:'success', summary: 'Success', detail: 'Added to cart succesful.'});
     }else{
       this.messageService.add({key:'carrito',severity:'error', summary: 'Error', detail: 'Is already in the cart.'});
@@ -85,5 +93,8 @@ export class DetailComponent implements OnInit {
       .subscribe(_=>{
         this.messageService.add({key:'favorite',severity:'success', summary: 'Success', detail: 'Added to favorite succesful.'});
       })
+  }
+  revisarDisabled(){
+   
   }
 }

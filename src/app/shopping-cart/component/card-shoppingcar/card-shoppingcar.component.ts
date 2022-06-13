@@ -31,7 +31,8 @@ export class CardShoppingcarComponent implements OnInit,AfterContentInit {
   deleteFromCart(item : Producto){
     this.deleteItem.emit(item)
   }
-  mostrar(){
+
+  cambiarCantidad(){
     this.productoService.getProductoById(this.item._id).subscribe(
       resp=> {
         resp.cantidad = this.cantidad

@@ -55,6 +55,7 @@
       ></p-inputNumber>
       <hr />
       <div class="flex justify-content-center flex-column">
+        <!-- [disabled]="!(token$ | async)" -->
         <button
           [disabled]="!(token$ | async)"
           pButton
@@ -64,7 +65,6 @@
           label="Agregar a Carrito"
           class="p-button-rounded p-button-danger m-1"
         ></button>
-
         <button
           *ngIf="token$ | async"
           pButton
