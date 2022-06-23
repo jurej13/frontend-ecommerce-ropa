@@ -10,6 +10,7 @@ import { selectShopping } from 'src/app/state/selectors/shopping.selectors';
 import { cleanCart, removeFromCart } from '../../../state/actions/cartShopping.actions';
 import { selectTotalPrice } from '../../../state/selectors/shopping.selectors';
 import { switchMap } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-shopping',
@@ -23,11 +24,11 @@ export class ShoppingComponent implements OnInit {
   token !: string
   constructor(private store : Store<AppState>,
       private router : Router,
-      private productoService : ProductoService
+      private productoService : ProductoService,
+      private messageService : MessageService
     ) { 
       this.store.select(SelectToken).subscribe(token => this.token = token)
     }
-
   ngOnInit(): void {
     this.productosCart$.subscribe(resp=> this.productosCart = resp)
     this.store.select(selectTotalPrice).subscribe(resp => this.total = resp)
@@ -36,18 +37,25 @@ export class ShoppingComponent implements OnInit {
     this.store.dispatch(removeFromCart({productoCart:item}))
   }
   realizarCompra(){
-    //TODO : Realizar edit realizando el cambio a la cantidad vendida
     this.productosCart.forEach(prod =>{
       this.productoService.getProductoById(prod._id)
         .pipe(
           map(resp=> {resp.stock=resp.stock - prod.cantidad!
-          return resp
+            if(resp.stock<= 0){
+              this.messageService.add({severity:'error', summary: 'Error',
+               detail: `Stock insuficiente de  ${resp.nombre}`});
+              throw new Error(`Stock insuficiente de  ${resp.nombre}`)
+            }
+            return resp
           }),
           switchMap(resp=> this.productoService.updateProductById(resp,prod._id,this.token))
-        ).subscribe()
+          ).subscribe(_=>{
+            this.messageService.add({severity:'success', summary: 'Success',
+              detail: 'Compra Realizada.'});
+            setTimeout(()=>this.router.navigate(['/home']),500)
+          this.store.dispatch(cleanCart())
+        })
       
-      this.store.dispatch(cleanCart())
-      setTimeout(()=>this.router.navigate(['/home']),500)
     })
   }
 
