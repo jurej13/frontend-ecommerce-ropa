@@ -41,10 +41,13 @@ export class ShoppingComponent implements OnInit {
       this.productoService.getProductoById(prod._id)
         .pipe(
           map(resp=> {resp.stock=resp.stock - prod.cantidad!
-            if(resp.stock<= 0){
+            if(resp.stock< 0){
               this.messageService.add({severity:'error', summary: 'Error',
                detail: `Stock insuficiente de  ${resp.nombre}`});
               throw new Error(`Stock insuficiente de  ${resp.nombre}`)
+            }
+            if(resp.stock == 0){
+              resp.disponible = false
             }
             return resp
           }),

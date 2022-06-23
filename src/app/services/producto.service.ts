@@ -29,7 +29,17 @@ export class ProductoService {
   }
   getProductByGender(gender : string): Observable<Producto[]>{
     const url : string = `${this.baseUrl}/productos/generos/${gender}`
-    return this.http.get<Producto[]>(url)
+    return this.http.get<Producto[]>(url).pipe(
+      map(resp=>{
+        const itemsArr : Producto[] = []
+        resp.forEach(prod=>{
+          if(prod.disponible){
+            itemsArr.push(prod)
+          }
+        })
+        return itemsArr
+      })
+    )
   }
   getProductosByCat(cat : string) : Observable<Producto[]>{
     const url : string = `${this.baseUrl}/productos/generos/HOMBRE`
@@ -39,7 +49,9 @@ export class ProductoService {
           const itemsArr : Producto[] = []  
           resp.forEach(prod =>{
             if(cat===prod.categoria.nombre){
-              itemsArr.push(prod)
+              if(prod.disponible){
+                itemsArr.push(prod)
+              }
             }
           })
           return itemsArr
@@ -55,7 +67,9 @@ export class ProductoService {
           const itemsArr : Producto[] = []  
           resp.forEach(prod =>{
             if(cat===prod.categoria.nombre){
-              itemsArr.push(prod)
+              if(prod.disponible){
+                itemsArr.push(prod)
+              }
             }
           })
           return itemsArr
@@ -71,8 +85,9 @@ export class ProductoService {
         resp.forEach(prod=>{
           prod.talle.forEach(talleProd=>{
             if(talleProd == Number(talle)){
-              itemsArr.push(prod)
-              
+              if(prod.disponible){
+                itemsArr.push(prod)
+              }
             }
           })
         })
@@ -88,8 +103,9 @@ export class ProductoService {
         resp.forEach(prod=>{
           prod.talle.forEach(talleProd=>{
             if(talleProd == Number(talle)){
-              itemsArr.push(prod)
-              
+              if(prod.disponible){
+                itemsArr.push(prod)
+              }
             }
           })
         })
