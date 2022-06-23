@@ -44,7 +44,6 @@ export class DetailComponent implements OnInit {
       this.productosCart$.subscribe(resp=> this.productosCart = resp)
     }   
   ngOnInit(): void { 
-    
     this.route.params.pipe(
       switchMap(({id})=> this.productoService.getProductoById(id))
     ).subscribe(
@@ -57,7 +56,6 @@ export class DetailComponent implements OnInit {
           }
         })
       })
-    
   }
 
   revisarChecked (talle : number) {

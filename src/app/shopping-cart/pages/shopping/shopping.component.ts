@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 import { Producto } from 'src/app/interfaces/productos.interface';
+import { ProductoService } from 'src/app/services/producto.service';
 import { AppState } from 'src/app/state/app.state';
+import { SelectToken } from 'src/app/state/selectors/authLogin.selectors';
 import { selectShopping } from 'src/app/state/selectors/shopping.selectors';
 import { cleanCart, removeFromCart } from '../../../state/actions/cartShopping.actions';
 import { selectTotalPrice } from '../../../state/selectors/shopping.selectors';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping',
@@ -16,9 +20,13 @@ export class ShoppingComponent implements OnInit {
   productosCart$  = this.store.select(selectShopping)
   productosCart !: Producto[]
   total !: number
+  token !: string
   constructor(private store : Store<AppState>,
-      private router : Router
-    ) { }
+      private router : Router,
+      private productoService : ProductoService
+    ) { 
+      this.store.select(SelectToken).subscribe(token => this.token = token)
+    }
 
   ngOnInit(): void {
     this.productosCart$.subscribe(resp=> this.productosCart = resp)
@@ -28,9 +36,19 @@ export class ShoppingComponent implements OnInit {
     this.store.dispatch(removeFromCart({productoCart:item}))
   }
   realizarCompra(){
-    alert('Compra realizada')
-    this.store.dispatch(cleanCart())
-    setTimeout(()=>this.router.navigate(['/home']),500)
+    //TODO : Realizar edit realizando el cambio a la cantidad vendida
+    this.productosCart.forEach(prod =>{
+      this.productoService.getProductoById(prod._id)
+        .pipe(
+          map(resp=> {resp.stock=resp.stock - prod.cantidad!
+          return resp
+          }),
+          switchMap(resp=> this.productoService.updateProductById(resp,prod._id,this.token))
+        ).subscribe()
+      
+      this.store.dispatch(cleanCart())
+      setTimeout(()=>this.router.navigate(['/home']),500)
+    })
   }
 
 }

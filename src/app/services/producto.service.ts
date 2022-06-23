@@ -124,6 +124,13 @@ export class ProductoService {
     }
     return this.http.delete<Usuario>(url,options)
   }
+  updateProductById(productoWithNewStock : Producto,idProducto : string,token:string) {
+    const url : string = `${this.baseUrl}/productos/${idProducto}`
+    const headers = new HttpHeaders()
+      .set('x-token',token)
+    
+    return this.http.put(url,productoWithNewStock,{headers})
+  }
 
 
 } 
