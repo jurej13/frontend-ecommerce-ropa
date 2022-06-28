@@ -19,14 +19,14 @@ export class CardHomeComponent implements OnInit {
   token$ : Observable<string> = this.store.select(SelectToken)
   usuario$ : Observable<Usuario> = this.store.select(SelectUser)
   token !: string
-  idUsuario !: string
+  usuario !: Usuario
   constructor(
     private store : Store<AppState>,
     private productService:ProductoService,
     private messageService : MessageService
   ) {
     this.token$.subscribe(resp=> this.token = resp )
-    this.usuario$.subscribe(resp=> this.idUsuario = resp.uid )
+    this.usuario$.subscribe(resp=> this.usuario = resp )
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -49,13 +49,20 @@ export class CardHomeComponent implements OnInit {
   ngOnInit(): void {
   }
   addFavorite(idFavorite : string){
-    this.productService.addFavorite(this.idUsuario,this.token,idFavorite)
-      .subscribe(_=>{
-        this.messageService.add(
-          {severity:'success', summary: 'Success',
-           detail: 'Added to favorite succesful.'}
-           );
-      })
+    if(!this.usuario.favorites?.includes(idFavorite)){
+      this.productService.addFavorite(this.usuario.uid,this.token,idFavorite)
+        .subscribe(_=>{
+          this.messageService.add(
+            {severity:'success', summary: 'Success',
+             detail: 'Added to favorite succesful.'}
+             );
+        })
+    }else{
+      this.messageService.add(
+        {severity:'warn', summary: 'Warn',
+         detail: 'This item is already in favorites.'}
+         );
+    }
   }
  
 }
