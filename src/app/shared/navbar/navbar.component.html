@@ -1,7 +1,21 @@
 <p-menubar class="col-12 p-0" [model]="items">
   <ng-template pTemplate="end">
     <div class="flex">
-      <input class="mr-3" type="text" pInputText placeholder="Search" />
+      <p-autoComplete [(ngModel)]="termino" 
+      [suggestions]="(productos | async)!"
+      field="name"
+      (completeMethod)="filterProduct($event)"
+      class="mx-2">
+        <ng-template let-product pTemplate="item">
+            <div class="flex h-3 w-3"
+            [routerLink]="['/detail', product._id]"
+            >
+                <img [src]="product.img" class="w-3" />
+                <div class="flex justify-content-center align-items-center font-bold
+                text-overflow-clip">{{product.nombre}}</div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
       <div *ngIf="token$ | async" class="flex justify-content-center mt-2 mx-2"
       >
         <i

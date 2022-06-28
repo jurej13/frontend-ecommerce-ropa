@@ -147,6 +147,10 @@ export class ProductoService {
     
     return this.http.put(url,productoWithNewStock,{headers})
   }
+  buscarProducto(termino : string) : Observable<Producto[]>{
+    const url : string = `${this.baseUrl}/buscar/productos/${termino}`
+    return this.http.get<Producto[]>(url)
+  }
 
 
 } 

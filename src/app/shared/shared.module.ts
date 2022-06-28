@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     PrimengModule,
+    FormsModule
   ],
   exports:[
     NavbarComponent,

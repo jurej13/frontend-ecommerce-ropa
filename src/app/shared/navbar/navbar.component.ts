@@ -2,8 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {MenuItem} from 'primeng/api';
-import { isEmpty, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Producto } from 'src/app/interfaces/productos.interface';
+import { ProductoService } from 'src/app/services/producto.service';
 import { Logout } from 'src/app/state/actions/authLogin.actions';
 import { cleanCart } from 'src/app/state/actions/cartShopping.actions';
 import { AppState } from 'src/app/state/app.state';
@@ -23,8 +24,11 @@ export class NavbarComponent implements OnInit {
   shopping !: Producto[]
   visible : boolean = false
   visible2 !: any
+  productos !: Observable<Producto[]>
+  termino : string = ''
   constructor(
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private productoService : ProductoService
     ) { 
       this.shopping$.subscribe(resp=>{
         this.shopping = resp
@@ -51,6 +55,11 @@ export class NavbarComponent implements OnInit {
           }
       ]; 
 
+  }
+  filterProduct(event : any){
+    console.log(event.query)
+    this.productos=this.productoService.buscarProducto(event.query)
+      
   }
   logout(){
     this.store.dispatch(Logout())
