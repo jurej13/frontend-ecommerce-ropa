@@ -47,10 +47,8 @@ export class ProductoService {
         resp=>{
           const itemsArr : Producto[] = []  
           resp.forEach(prod =>{
-            if(cat===prod.categoria.nombre){
-              if(prod.disponible){
-                itemsArr.push(prod)
-              }
+            if(cat===prod.categoria.nombre && prod.disponible){
+                itemsArr.push(prod)              
             }
           })
           return itemsArr
@@ -65,10 +63,8 @@ export class ProductoService {
         resp=>{
           const itemsArr : Producto[] = []  
           resp.forEach(prod =>{
-            if(cat===prod.categoria.nombre){
-              if(prod.disponible){
+            if(cat===prod.categoria.nombre && prod.disponible){
                 itemsArr.push(prod)
-              }
             }
           })
           return itemsArr
@@ -83,10 +79,8 @@ export class ProductoService {
         const itemsArr : Producto[] = []
         resp.forEach(prod=>{
           prod.talle.forEach(talleProd=>{
-            if(talleProd == Number(talle)){
-              if(prod.disponible){
+            if(talleProd == Number(talle) && prod.disponible){
                 itemsArr.push(prod)
-              }
             }
           })
         })
@@ -101,10 +95,8 @@ export class ProductoService {
         const itemsArr : Producto[] = []
         resp.forEach(prod=>{
           prod.talle.forEach(talleProd=>{
-            if(talleProd == Number(talle)){
-              if(prod.disponible){
+            if(talleProd == Number(talle) && prod.disponible){
                 itemsArr.push(prod)
-              }
             }
           })
         })
