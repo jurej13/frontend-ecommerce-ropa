@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  Observable, of } from 'rxjs';
-import { catchError,map,switchMap,tap } from 'rxjs/operators';
+import { catchError,map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../auth/interface/authResponse.interface';
-import { FavoriteResponse } from '../interfaces/favoriteResponse.interface';
 import { Producto } from '../interfaces/productos.interface';
 
 @Injectable({
